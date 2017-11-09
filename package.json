@@ -1,0 +1,24 @@
+{
+  "name": "blockchain-lab-training",
+  "version": "0.0.1",
+  "description": "The sexiest blockchain app ever",
+  "main": "index.js",
+  "scripts": {
+    "training": "concurrently --kill-others \"$(npm bin)/truffle compile; $(npm bin)/testrpc\" \"sleep 5; $(npm bin)/truffle migrate; $(npm bin)/truffle serve\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gomar/analyst-summit-blockchain.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gomar/analyst-summit-blockchain/issues"
+  },
+  "homepage": "https://github.com/gomar/analyst-summit-blockchain#readme",
+  "devDependencies": {
+    "concurrently": "^3.1.0",
+    "truffle": "^2.1.1",
+    "bip39": "2.3.0"
+  }
+}

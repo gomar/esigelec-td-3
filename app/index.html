@@ -1,0 +1,79 @@
+<html>
+
+<head>
+    <!-- TODO Add app name
+    <title>APP NAME</title> -->
+
+    <!-- Required meta tags for bootstrap -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <!-- Loading truffle app -->
+    <script src="./app.js"></script>
+
+    <!-- Loading angular app -->
+    <script src="assets/js/angular.min.js"></script>
+    <script src="assets/js/angular-ui-router.min.js"></script>
+    <script src="app/app-angular.js"></script>
+    <script src="https://use.fontawesome.com/405c2d7413.js"></script>
+
+</head>
+
+<body>
+    <div class="container ui-view-container">
+        <br>
+        <h3>Blockchain content</h3>
+        <br>
+        <br>
+
+        <div class="row">
+            <div class="col-8 offset-2">
+                <form>
+                    <div class="form-group">
+                        <label for="amount">To Address: </label>
+                        <input type="text" class="form-control" ng-model="to_address" aria-describedby="blockchainAddressHelp" placeholder="e.g., 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae">
+                        <small id="blockchainAddressHelp" class="form-text text-muted">The blockchain address you want to send money to.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="receiver">Amount: </label>
+                        <input type="text" class="form-control" ng-model="amount" placeholder="e.g., 95">
+                    </div>
+                    <button type="submit" class="btn btn-primary" ng-click="ctrlSendCoin(to_address, amount)">Send MetaCoin</button>
+                </form>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+
+        <div class="card-columns" ng-init="ctrlRefreshBalance(accounts[0])">
+            <div class="card" ng-repeat="account in accounts">
+                <div class="card-header">
+                    Account {{ accounts.indexOf(account) }}
+                </div>
+                <div class="card-block">
+                    <p class="card-text" style="word-wrap:break-word;">
+                        <b>Account number</b> : {{ account }} <br><br>
+                        <b>Balance</b> : {{ balances[account] }} <i class="fa fa-btc" aria-hidden="true"></i>
+                    </p>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+<script>
+    window.addEventListener('load', function() {
+      angular.bootstrap(document, ['app'])
+    })
+ </script>
+
+</html>
