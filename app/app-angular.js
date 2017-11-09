@@ -13,7 +13,7 @@ myApp.service('BlockchainService', function($rootScope, $http) {
         return accounts;
     }
 
-    blockchainService.refreshBalance = function(from_account) {
+    blockchainService.refreshBalance = function() {
         // getBalance function is a promise. Since we have to call it
         // once per account, we better store all the promise in an array
         // and resolve them using Promise.all()
@@ -22,7 +22,7 @@ myApp.service('BlockchainService', function($rootScope, $http) {
         var promises = [];
         for (var i = 0; i < accounts.length; i++) {
             promises.push(
-                deployedContract.getBalance.call(accounts[i], {from: from_account}).then( function(value){
+                deployedContract.getBalance.call(accounts[i]).then( function(value){
                     return value.toNumber();
                 })
             );
@@ -36,8 +36,8 @@ myApp.service('BlockchainService', function($rootScope, $http) {
         });
     };
 
-    blockchainService.sendCoin = function(to_address, amount) {
-        return deployedContract.sendCoin(to_address, amount, {from: accounts[0]});
+    blockchainService.sendCoin = function(from_address, to_address, amount) {
+        return deployedContract.sendCoin(to_address, amount, {from: from_address});
     }
 
     return blockchainService;
@@ -55,8 +55,9 @@ myApp.controller('blockchainController', function (BlockchainService, $scope, $r
     };
 
     $scope.ctrlSendCoin = function(to_address, amount) {
-        BlockchainService.sendCoin(to_address, amount).then(function() {
-            $scope.ctrlRefreshBalance($scope.accounts[0]);
+        from_address = accounts[0];
+        BlockchainService.sendCoin(from_address, to_address, amount).then(function() {
+            $scope.ctrlRefreshBalance(accounts[0]);
         })
     }
 });
