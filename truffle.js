@@ -1,11 +1,11 @@
 module.exports = {
   build: {
     "index.html": "index.html",
+    "app-angular.js": "app-angular.js",
     "app.js": [
       "truffle/app.js"
     ],
     "assets/": "assets/",
-    "app/": "app/"
   },
 
   rpc: {
