@@ -57,7 +57,7 @@ myApp.controller('blockchainController', function (BlockchainService, $scope, $r
     $scope.ctrlSendCoin = function(to_address, amount) {
         from_address = accounts[0];
         BlockchainService.sendCoin(from_address, to_address, amount).then(function() {
-            $scope.ctrlRefreshBalance(accounts[0]);
+            $scope.ctrlRefreshBalance();
         })
     }
 });
